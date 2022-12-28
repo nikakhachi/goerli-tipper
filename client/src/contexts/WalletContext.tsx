@@ -14,9 +14,8 @@ type WalletContextType = {
 export const WalletContext = createContext<WalletContextType | null>(null);
 
 export const WalletProvider: React.FC<PropsWithChildren> = ({ children }) => {
-  // @ts-ignore
   const metamaskWallet = window.ethereum;
-  const [metamaskAccount, setMetamaskAccount] = useState<any>();
+  const [metamaskAccount, setMetamaskAccount] = useState();
   const [isMetamaskAccountSearchLoading, setIsMetamaskAccountSearchLoading] = useState(true);
   const [isNetworkGoerli, setIsNetworkGoerli] = useState<boolean>();
 
@@ -34,7 +33,7 @@ export const WalletProvider: React.FC<PropsWithChildren> = ({ children }) => {
 
   const findMetaMaskAccount = async () => {
     try {
-      if (!metamaskWallet) return null;
+      if (!metamaskWallet || !metamaskWallet.request) return null;
 
       const accounts = await metamaskWallet.request({ method: "eth_accounts" });
 
@@ -53,7 +52,7 @@ export const WalletProvider: React.FC<PropsWithChildren> = ({ children }) => {
   };
 
   const connectToWallet = async () => {
-    if (!metamaskWallet) return null;
+    if (!metamaskWallet || !metamaskWallet.request) return null;
 
     const accounts = await metamaskWallet.request({
       method: "eth_requestAccounts",
