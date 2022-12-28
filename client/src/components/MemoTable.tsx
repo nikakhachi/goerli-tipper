@@ -8,6 +8,8 @@ interface IProps {
 }
 
 export const WaveTable: React.FC<IProps> = ({ memos }) => {
+  const coffeeAmount = (ethAmount: number) => (ethAmount * 1000 <= 1 ? "☕" : ethAmount * 1000 <= 2 ? "☕☕" : "☕☕☕☕");
+
   return (
     <TableContainer component={Paper} sx={{ marginTop: "2rem" }}>
       <Table sx={{ minWidth: 700 }} size="small">
@@ -23,7 +25,7 @@ export const WaveTable: React.FC<IProps> = ({ memos }) => {
               <strong>Message</strong>
             </TableCell>
             <TableCell align="right">
-              <strong>Tip</strong>
+              <strong>Coffee</strong>
             </TableCell>
           </TableRow>
         </TableHead>
@@ -40,7 +42,7 @@ export const WaveTable: React.FC<IProps> = ({ memos }) => {
                 {memo.message}
               </TableCell>
               <TableCell sx={{ background: "rgba(0,0,0,0)", fontStyle: "italic" }} align="right">
-                {memo.ethAmount} ETH
+                {coffeeAmount(memo.ethAmount)}
               </TableCell>
             </TableRow>
           ))}
