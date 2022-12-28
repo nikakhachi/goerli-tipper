@@ -36,12 +36,10 @@ export const WalletProvider: React.FC<PropsWithChildren> = ({ children }) => {
     try {
       if (!metamaskWallet) return null;
 
-      console.log("We have the Ethereum object", metamaskWallet);
       const accounts = await metamaskWallet.request({ method: "eth_accounts" });
 
       if (accounts.length !== 0) {
         const account = accounts[0];
-        console.log("Found an authorized account:", account);
         return account;
       } else {
         setIsMetamaskAccountSearchLoading(false);
@@ -61,7 +59,6 @@ export const WalletProvider: React.FC<PropsWithChildren> = ({ children }) => {
       method: "eth_requestAccounts",
     });
 
-    console.log("Connected", accounts[0]);
     setMetamaskAccount(accounts[0]);
     checkIfNetworkIsGoerli();
     return accounts[0];

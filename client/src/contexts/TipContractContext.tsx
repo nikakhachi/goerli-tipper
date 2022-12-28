@@ -33,7 +33,6 @@ export const TipsProvider: React.FC<PropsWithChildren> = ({ children }) => {
     setAreMemosLoading(true);
     const memoContract = getMemoContract(signer);
     const memosRaw = await memoContract.getMemos();
-    console.log(memosRaw);
     setMemos(
       memosRaw
         .map((item: any) => ({
@@ -63,7 +62,6 @@ export const TipsProvider: React.FC<PropsWithChildren> = ({ children }) => {
     const memoContract = getMemoContract(signer);
     memoContract.provider.once("block", () => {
       memoContract.on("NewMemo", (from: string, timestamp: number, message: string, amount: any) => {
-        console.log("NewMemo", from, timestamp, message);
         setMemos((prevState) => [
           {
             from,
