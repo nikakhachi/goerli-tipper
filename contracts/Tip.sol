@@ -8,7 +8,7 @@ contract Tip {
     owner = payable(msg.sender);
   }
 
-  event newMemo(address indexed from, uint256 timestamp, string message);
+  event NewMemo(address indexed from, uint256 timestamp, string message, uint256 amount);
 
   struct Memo{
     address from;
@@ -22,7 +22,7 @@ contract Tip {
   function giveTip(string memory _message) public payable {
     require(msg.value > 0, "Really?");
     memos.push(Memo(msg.sender, block.timestamp, _message, msg.value));
-    emit newMemo(msg.sender, block.timestamp, _message);
+    emit NewMemo(msg.sender, block.timestamp, _message, msg.value);
   }
 
   function getMemos() external view returns(Memo[] memory) {
