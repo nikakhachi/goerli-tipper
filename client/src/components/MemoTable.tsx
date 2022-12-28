@@ -8,10 +8,9 @@ interface IProps {
 }
 
 export const WaveTable: React.FC<IProps> = ({ memos }) => {
-  console.log(memos);
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 700 }} size="small">
+      <Table sx={{ minWidth: 700, marginTop: "2rem" }} size="small">
         <TableHead sx={{ background: "lightgray" }}>
           <TableRow>
             <TableCell>
@@ -40,7 +39,7 @@ export const WaveTable: React.FC<IProps> = ({ memos }) => {
               <TableCell sx={{ background: "rgba(0,0,0,0)", borderRight: "1px solid rgba(0,0,0,0.1)" }} align="right">
                 {memo.message}
               </TableCell>
-              <TableCell sx={{ background: "rgba(0,0,0,0)" }} align="right">
+              <TableCell sx={{ background: "rgba(0,0,0,0)", fontStyle: "italic" }} align="right">
                 {memo.ethAmount} ETH
               </TableCell>
             </TableRow>

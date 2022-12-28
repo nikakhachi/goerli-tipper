@@ -7,7 +7,7 @@ type TipContextType = {
   isMining: boolean;
   fetchAndUpdateMemos: (signer: ethers.providers.JsonRpcSigner) => Promise<void>;
   memos: Memo[];
-  handleMemo: (signer: ethers.providers.JsonRpcSigner, message: string) => Promise<void>;
+  handleMemo: (signer: ethers.providers.JsonRpcSigner, message: string, ethAmount: number) => Promise<void>;
   setMemos: (memos: Memo[]) => void;
   setNewMemoEventHandler: (signer: ethers.providers.JsonRpcSigner) => void;
   areMemosLoading: boolean;
@@ -47,10 +47,10 @@ export const TipsProvider: React.FC<PropsWithChildren> = ({ children }) => {
     setAreMemosLoading(false);
   };
 
-  const handleMemo = async (signer: ethers.providers.JsonRpcSigner, message: string) => {
+  const handleMemo = async (signer: ethers.providers.JsonRpcSigner, message: string, ethAmount: number) => {
     try {
       const memoContract = getMemoContract(signer);
-      const memoTxn = await memoContract.giveTip(message, { gasLimit: 300000, value: ethers.utils.parseEther("0.001") });
+      const memoTxn = await memoContract.giveTip(message, { value: ethers.utils.parseEther(String(ethAmount)) });
       setIsMining(true);
       await memoTxn.wait();
       setIsMining(false);
