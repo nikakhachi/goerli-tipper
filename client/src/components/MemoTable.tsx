@@ -9,8 +9,8 @@ interface IProps {
 
 export const WaveTable: React.FC<IProps> = ({ memos }) => {
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 700, marginTop: "2rem" }} size="small">
+    <TableContainer component={Paper} sx={{ marginTop: "2rem" }}>
+      <Table sx={{ minWidth: 700 }} size="small">
         <TableHead sx={{ background: "lightgray" }}>
           <TableRow>
             <TableCell>
