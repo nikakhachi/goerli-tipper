@@ -1,0 +1,19 @@
+.root {
+  padding: 5rem 0;
+}
+
+.homePageDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.homePageDiv {
+  gap: 1rem;
+  width: 700px;
+}
+
+.waveBtnDiv {
+  width: 20%;
+}
